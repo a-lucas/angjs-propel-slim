@@ -1,47 +1,21 @@
 <?php
 
-/*
-/**
- * URLS
-\
-$app->get('/URLS/urls/:id', function($websiteID){
-    echo  \MODELS\URLS\urlsQuery::create()->filterByWebsiteid($websiteID)->find()->toJSON(false) ;
-});
-$app->get('/URLS/url/:id', function($urlID){
-    echo  \MODELS\URLS\urlsQuery::create()->findPk($urlID)->toJSON(false);
-});
-$app->put('/URLS/url/:id', function($urlID){
-    $m = \MODELS\URLS\urlsQuery::create()->findPk($urlID);
-    $m->importFrom('JSON', jreq());
-    $m->save();
-});
-$app->post('/URLS/url', function(){
-    $m = new \MODELS\URLS\urls();
-    $m->importFrom('JSON', jreq());
-    $m->save();
-});
-$app->delete('/URLS/url/:id', function($urlID){
-    $m = \MODELS\URLS\urlsQuery::create()->findPk($urlID);
-    $m->delete();
-}); */
 
-echo "Enter your propel Model path (ex : \MODELS\URLS\urls : \n";
+
+echo "Enter your propel Model path with the namesapce (ex : \MODELS\USERS\preferences : \n";
 $model = trim(fgets(STDIN));
-
 
 
 $data = explode("\\",$model);
 if($data[0]==""){
     unset($data[0]);
 }
-if(count($data)!=3){
-    echo "The class path must contain 3 elements\n";
-    exit(1);
-}
+
 $d = [];
 foreach($data as $dd){
     $d[]=$dd;
 }
+
 $data=$d;
 $U = $data[1];
 $className = $data[2];
