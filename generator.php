@@ -1,6 +1,6 @@
 <?php
 
-
+require_once("./config.php");
 
 echo "Enter your propel Model path with the namesapce (ex : \MODELS\USERS\preferences : \n";
 $model = trim(fgets(STDIN));
@@ -64,11 +64,12 @@ echo $str;
 
 $aN  = ucfirst($data[2]);
 $angular = "
+var app= angular.module('".$aN."Service');
 app.factory('$aN', function(\$http,\$q) {
      return {
         getAll: function() {
             var deferred = \$q.defer();
-            \$http.get('/api/index.php/$U/$plural').then(function(c) { 
+            \$http.get('".$url.$api."/index.php/$U/$plural').then(function(c) {
                     deferred.resolve(c.data);
             }, function(reason) {
                     deferred.reject(reason);
@@ -77,7 +78,7 @@ app.factory('$aN', function(\$http,\$q) {
         },
         get: function(id) {
             var deferred = \$q.defer();
-            \$http.get('/api/index.php/$U/$singular/'+id).then(function(c) { 
+            \$http.get('".$url.$api."/index.php/$U/$singular/'+id).then(function(c) {
                     deferred.resolve(c.data);
             }, function(reason) {
                     deferred.reject(reason);
@@ -86,7 +87,7 @@ app.factory('$aN', function(\$http,\$q) {
         },
         doSave : function(s){
             var deferred = \$q.defer();
-            \$http.put('/api/index.php/$U/$singular/'+ s.id , s).then(function() { 
+            \$http.put('".$url.$api."/index.php/$U/$singular/'+ s.id , s).then(function() {
                     deferred.resolve();
             }, function(reason) {
                     deferred.reject(reason);
@@ -95,7 +96,7 @@ app.factory('$aN', function(\$http,\$q) {
         },
         doCreate : function(s){
             var deferred = \$q.defer();
-            \$http.post('/api/index.php/$U/$singular' , s).then(function(result) { 
+            \$http.post('".$url.$api."/index.php/$U/$singular' , s).then(function(result) {
                     deferred.resolve(result.data);
             }, function(reason) {
                     deferred.reject(reason);
@@ -104,7 +105,7 @@ app.factory('$aN', function(\$http,\$q) {
         },
         doDelete : function(s){
             var deferred = \$q.defer();
-            \$http.delete('/api/index.php/$U/$singular/'+s.id).then(function() { 
+            \$http.delete('".$url.$api."/index.php/$U/$singular/'+s.id).then(function() {
                     deferred.resolve();
             }, function(reason) {
                     deferred.reject(reason);
