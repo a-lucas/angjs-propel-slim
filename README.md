@@ -69,7 +69,7 @@ The code generated will looks like this :
 
 ## AngularJS factory definition
     
-    var app= angular.module('service-product')'
+    var app= angular.module('ProductsFactory')'
     app.factory('Products', function($http,$q) {
          return {
             getAll: function() {
